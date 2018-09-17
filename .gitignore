@@ -1,23 +1,66 @@
-# Compiled class file
-*.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+import javax.swing.JOptionPane;
+public class Aula0{
+    public static void main(String[] args) {
+        String mat[][] = new String[3][4];
+        
+        System.out.println("Matriz");
+        for (int i = 0; i < 3; i++) {
+            System.out.println(" ");
+            for (int j = 0; j < 4; j++) {
+				String valor = JOptionPane.showInputDialog(null, "OI, insira a quantidade de caixas de cerveja para o compartimento " +( i+1)+  "00" + (j+1) +":" );
+                
+                mat[i][j] = valor;
+                System.out.print(valor + " ");
+            }
+        }
+        System.out.println(" ");
+        System.out.println(" ");
+		double maior =0; 
+		double menor =500;
+		double soma =0;
+		String compartimentoMaior="";
+		String compartimentoMenor="";	
+		
+        // Loop para percorrer as colunas
+        for (int j = 0; j < 4; j++) {
+            
+            // Loop para percorrer as linhas
+            for (int i = 0; i < 3; i++) {
+                int v = Integer.parseInt(mat[i][j]);
+				soma = soma + v; 
+				if (v < menor) {
+					menor = v;
+					compartimentoMenor =(i+1) +"00"+(j+1); 
+				}
+				
+				if (v > maior) {
+					maior = v;
+					compartimentoMaior =(i+1) +"00"+(j+1);
+				}
+            }
+            // Print da soma de cada coluna
+            
+            
+            
+        }
+		System.out.println("Total de cervejas   "+ soma);
+		System.out.println("A media e :"   +(soma/12));
+		System.out.println("O numero que tem mais caixas de cerveja :" + compartimentoMaior);
+		System.out.println("O numero que tem menos caixa de cerveja :" + compartimentoMenor);
+		int dialogResult = JOptionPane.showConfirmDialog(null, "Queres consultar?","Warning", JOptionPane.YES_NO_OPTION);
+		do {   //Retorna o inteiro que representa aquele caracter, e o chart pega o string da posição 1.
+			String mat1 = JOptionPane.showInputDialog(null,"Informe o compartimento");
+			int linha = Character.getNumericValue(mat1.charAt(0))-1;
+			int coluna = Character.getNumericValue(mat1.charAt(3))-1;
+			
+			JOptionPane.showMessageDialog(null,"O valor contido no " + mat1 + " eh: " + mat[linha][coluna]);
+			dialogResult = JOptionPane.showConfirmDialog(null, "Queres consultar mais um?","Warning", JOptionPane.YES_NO_OPTION);
+		} while(dialogResult == JOptionPane.YES_OPTION);
+	}	 	
+		
+		
+	
+			
+	
+			
+}
